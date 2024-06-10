@@ -1,18 +1,29 @@
-from AppKit import NSWorkspace
-from urllib.parse import unquote
-import time
+import subprocess
+from get_os import check_os
+import sys
 
-def get_focused_app_info():
-    ws = NSWorkspace.sharedWorkspace()
-    app = ws.frontmostApplication()
-    
-    if app:
-        # app_name = app.localizedName()
-        app_path = unquote(app.bundleURL().absoluteString())
+def get_focus_app_mac():
+    focus_app = subprocess.run([sys.executable, 'get_focus_app_mac.py'], stdout=subprocess.PIPE, text=True)
+    if focus_app.returncode == 0:
+      focus_app_ret = focus_app.stdout.strip()
     else:
-        # app_name = "无"
-        app_path = ""
+      focus_app_ret = ''
+    return focus_app_ret
+    
+def get_focus_app_win():
+    focus_app = subprocess.run([sys.executable, 'get_focus_app_win.py'], stdout=subprocess.PIPE, text=True)
+    if focus_app.returncode == 0:
+      focus_app_ret = focus_app.stdout.strip()
+    else:
+      focus_app_ret = ''
+    return focus_app_ret
 
-    return app_path
-
-print(get_focused_app_info())
+def get():
+  focus_app = ''
+  if check_os() == 'macOS':
+    focus_app = get_focus_app_mac()
+  elif check_os() == 'Windows':
+    focus_app = get_focus_app_win()
+  else:
+    focus_app = ''
+  return focus_app
