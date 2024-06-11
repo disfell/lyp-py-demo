@@ -1,5 +1,5 @@
 import subprocess
-from get_os import check_os
+import get_os
 import sys
 
 def get_focus_app_mac():
@@ -20,9 +20,10 @@ def get_focus_app_win():
 
 def get():
   focus_app = ''
-  if check_os() == 'macOS':
+  check = get_os.get()
+  if check == 'macOS':
     focus_app = get_focus_app_mac()
-  elif check_os() == 'Windows':
+  elif check == 'Windows':
     focus_app = get_focus_app_win()
   else:
     focus_app = ''
