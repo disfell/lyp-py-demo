@@ -1,7 +1,7 @@
 import platform
 
 # 获取当前 OS
-def check_os():
+def get():
     system = platform.system()
     if system == 'Windows':
       return 'Windows'
