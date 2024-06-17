@@ -22,10 +22,7 @@ def get():
   focus_app = ''
   check = get_os.get()
   if check == 'macOS':
-  check = get_os.get()
-  if check == 'macOS':
     focus_app = get_focus_app_mac()
-  elif check == 'Windows':
   elif check == 'Windows':
     focus_app = get_focus_app_win()
   else:
