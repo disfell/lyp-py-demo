@@ -1,53 +1,55 @@
-import logging
 import sched
 import time
 from datetime import datetime, timedelta
 import utils.get_os as get_os
 import utils.get_focus_app as g_app
-import act_working
 import os
-import configparser
+import requests
+import json
+from my_logger import LoggingConfig
 
-config = configparser.ConfigParser()
-config.read('config.ini')
-last_send_working = datetime.now()
+logger = LoggingConfig.setup_logging()
+last_send_time = datetime.now()
+current_app = ''
 
 scheduler = sched.scheduler(time.time, time.sleep)
-# 获取当前时间的格式化字符串，例如：'2024-06-14_15-42-30'
-current_time = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-# 定义日志文件的基本名称和扩展名
-log_base_name = 'app_log'
-log_extension = '.log'
-# 完整的日志文件名，包含时间戳
-log_file_path = os.path.join('logs', f"{log_base_name}_{current_time}{log_extension}")
-logging.basicConfig(
-  level=logging.INFO,  # 日志级别
-  filename=log_file_path,  # 日志文件名，将被保存在当前文件夹
-  filemode='w',  # 模式，'a'表示追加，'w'表示覆盖
-  format='%(asctime)s - %(levelname)s - %(message)s',  # 日志格式
-  datefmt='%Y-%m-%d %H:%M:%S'  # 自定义时间格式，不包含毫秒
-)
+current_platform = get_os.get()
 
 # 执行任务
 def job():
-  global last_send_working
-  current = datetime.now()
+  global last_send_time
+  global current_app
+  current_time = datetime.now()
   
+  # ==================  获取聚焦的 APP ================== 
   focus_app = ''
   try:
     focus_app = g_app.get()
   except Exception as e:
-    logging.exception(e)
-  logging.debug(f'focus_app={focus_app}')
+    logger.exception(e)
+  logger.debug(f'focus_app={focus_app}')
+  # ==================  获取聚焦的 APP ================== 
+  
+  lypink = os.environ.get('LYP_INK_DOMAIM')
+  if lypink is None:
+    lypink = 'http://localhost:3000'
 
-  time_diff = current - last_send_working
-  if time_diff >= timedelta(seconds=60):
-    last_send_working = current
-    act_working.heartbeat()
 
-  scheduler.enter(5, 1, job)
+  time_difference = current_time - last_send_time
 
-logging.info(f"当前系统: {get_os.get()}")
+  if time_difference >= timedelta(minutes=5) or focus_app != current_app:
+    current_app = focus_app
+    json_data = {'current_app': current_app, 'platform': current_platform}
+    try:
+      ret = requests.post(f'{lypink}/api/supa', json={'id': '19960928', 'msg': json.dumps(json_data)})
+      logger.debug(f'ret={ret.content}')
+    except Exception as e:
+      logger.exception(e)
+    last_send_time = datetime.now()
+  
+  scheduler.enter(10, 0, job)
+
+logger.info(f"当前系统: {current_platform}")
 # 立即执行job
-scheduler.enter(0, 1, job)
+scheduler.enter(0, 0, job)
 scheduler.run()

@@ -1,0 +1,22 @@
+{
+  "clientId": "030180700047",
+  "client": {},
+  "fundAccts": [],
+  "secumAccts": [],
+  "stockAccts": [
+    {
+      "fundAccount": "81703668",
+      "exchangeType": "2",
+      "stockAccount": "0635331400",
+      "isCsdcCancel": "1",
+      "acodeAccount": "181460342219",
+      "csdcHolderKind": "24",
+      "csdcIdKind": "01",
+      "csdcIdNo": "320925198511191038",
+      "assetProp": "7"
+    }
+  ],
+  "bankAccts": [],
+  "remark": "",
+  "branchNo": 301
+}

@@ -1,5 +1,9 @@
 # 创建本地环境
 
+python -m venv .venv
+
+或者
+
 python3 -m venv .venv
 
 # Windows
@@ -10,13 +14,21 @@ python3 -m venv .venv
 
 **列出依赖**
 
-pip freeze > requirements_win.txt  
+pip freeze > requirements_win.txt
+
+或者
+
 pip3 freeze > requirements_win.txt
 
 **安装依赖**
 
-pip install -r requirements_win.txt  
+pip install -r requirements_win.txt
+
+或者
+
 pip3 install -r requirements_win.txt
+
+**执行app.py**
 
 # macOS
 
@@ -26,18 +38,22 @@ pip3 install -r requirements_win.txt
 
 **列出依赖**
 
-pip freeze > requirements_macos.txt  
+pip freeze > requirements_macos.txt
+
+或者
+
 pip3 freeze > requirements_macos.txt
 
 **安装依赖**
 
-pip install -r requirements_macos.txt  
+pip install -r requirements_macos.txt
+
+或者
+
 pip3 install -r requirements_macos.txt
 
-# 执行App
+**执行app.py**
 
-gunicorn -w 4 flask_app:app
+**安装 realpath**
 
-# 临时切换pip源
-
-pip install some-package -i https://pypi.mirrors.ustc.edu.cn/simple/
+brew install coreutils
