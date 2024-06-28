@@ -37,12 +37,12 @@ def job():
 
   time_difference = current_time - last_send_time
 
-  if time_difference >= timedelta(minutes=5) or focus_app != current_app:
+  if time_difference >= timedelta(seconds=30) or focus_app != current_app:
     current_app = focus_app
     json_data = {'current_app': current_app, 'platform': current_platform}
     try:
       ret = requests.post(f'{lypink}/api/supa', json={'id': '19960928', 'msg': json.dumps(json_data)})
-      logger.debug(f'ret={ret.content}')
+      logger.debug(f'req succ, ret={ret.content}')
     except Exception as e:
       logger.exception(e)
     last_send_time = datetime.now()
