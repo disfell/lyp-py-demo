@@ -5,7 +5,7 @@ class LoggingConfig:
     logger = None
 
     @staticmethod
-    def setup_logging(level=logging.DEBUG):
+    def setup_logging(level=logging.INFO):
       if LoggingConfig.logger is not None:
           return LoggingConfig.logger
       # 定义日志根目录
@@ -19,14 +19,14 @@ class LoggingConfig:
 
       # 创建一个日志记录器
       logger = logging.getLogger('my_logger')
-      logger.setLevel(logging.DEBUG)
+      logger.setLevel(level)
 
       # 创建一个日志格式
       log_format = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
 
       # 创建一个文件处理器，用于写入debug和info日志，每次运行覆盖旧文件
       file_handler = logging.FileHandler(log_path, mode='w')
-      file_handler.setLevel(logging.DEBUG)
+      file_handler.setLevel(level)
       file_handler.setFormatter(log_format)
 
       # 将文件处理器添加到日志记录器
