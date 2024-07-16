@@ -1,4 +1,6 @@
-oracle 数据库下有一个clientjour表，表里有字段curr_date, curr_time，均为数字类型
-举例：curr_date=20230101，可以肯定的是数字长度保持在8位，2023年1月1日
-举例：curr_time=115959，代表11点59分59秒；curr_time=15959，代表1点59分59秒
-我需要计算当前数据是否是5分钟前的。
+EXPLAIN SELECT * FROM gfuser.elesign_paramposition WHERE file_no IN ('00040099','00040098') AND sub_seal_type IN ('30','31');
+
+输出结果是
+
+10001	SQLNode	1			 SELECT `gfuser`.`elesign_paramposition`.`file_no`,`gfuser`.`elesign_paramposition`.`seal_type`,`gfuser`.`elesign_paramposition`.`sub_seal_type`,`gfuser`.`elesign_paramposition`.`locate_type`,`gfuser`.`elesign_paramposition`.`key_text`,`gfuser`.`elesign_paramposition`.`x_pos`,`gfuser`.`elesign_paramposition`.`y_pos`,`gfuser`.`elesign_paramposition`.`page_num`,`gfuser`.`elesign_paramposition`.`remark`,`gfuser`.`elesign_paramposition`.`key_num`,`gfuser`.`elesign_paramposition`.`organ_flag`,`gfuser`.`elesign_paramposition`.`gtid` as `gtid1` FROM `gfuser`.`elesign_paramposition`  where ((`file_no` in ('00040099','00040098')) and (`sub_seal_type` in ('30','31')))  	Cluster13,g1		Parent=NULL,Child=NULL,Next=NULL			cr, gfuser.elesign_paramposition=rep
+1	SIMPLE	elesign_paramposition	NULL	range	PRIMARY	PRIMARY	42	NULL	12	20.00	Using where, g1

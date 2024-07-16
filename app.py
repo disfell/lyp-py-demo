@@ -6,13 +6,16 @@ import utils.get_focus_app as g_app
 import os
 import requests
 import json
-from my_logger import LoggingConfig
+from logger.my_logger import LoggingConfig
 
 logger = LoggingConfig.setup_logging()
+
+# 轮训执行程序
+scheduler = sched.scheduler(time.time, time.sleep)
+
+# 一些全局变量
 last_send_time = datetime.now()
 current_app = ''
-
-scheduler = sched.scheduler(time.time, time.sleep)
 current_platform = get_os.get()
 
 # 执行任务
@@ -33,7 +36,6 @@ def job():
   lypink = os.environ.get('LYP_INK_DOMAIM')
   if lypink is None:
     lypink = 'http://localhost:3000'
-
 
   time_difference = current_time - last_send_time
 

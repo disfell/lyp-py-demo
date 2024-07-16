@@ -1,0 +1,40 @@
+{
+  "archDatas": {
+    "00040105": {
+      "url": "https://nboptest.gf.com.cn/api/nbop/reportcenter/1.0.0/report/modelFile/qltywwtxy.pdf",
+      "positionStr": "lyptest00001"
+    },
+    "00040133": {
+      "url": "https://nboptest.gf.com.cn/api/nbop/reportcenter/1.0.0/report/modelFile/kzzfxjss.pdf",
+      "positionStr": "lyptest00001"
+    },
+    "00040148": {
+      "url": "https://nboptest.gf.com.cn/api/nbop/reportcenter/1.0.0/report/modelFile/zqyjsqbzxysxyzh.pdf",
+      "positionStr": "lyptest00001"
+    },
+    "00040155": {
+      "url": "https://nboptest.gf.com.cn/api/nbop/reportcenter/1.0.0/report/modelFile/bjzqjysgpjytbfxjss.pdf",
+      "positionStr": "lyptest00001"
+    },
+    "00040183": {
+      "url": "https://nboptest.gf.com.cn/api/nbop/reportcenter/1.0.0/report/modelFile/rzrqhtcp.pdf",
+      "positionStr": "lyptest00001"
+    },
+    "00040185": {
+      "url": "https://nboptest.gf.com.cn/api/nbop/reportcenter/1.0.0/report/modelFile/kzhgszqtzfxjssbj.pdf",
+      "positionStr": "lyptest00001"
+    },
+    "00040186": {
+      "url": "https://nboptest.gf.com.cn/api/nbop/reportcenter/1.0.0/report/modelFile/kzhgszqtzfxjssgz.pdf",
+      "positionStr": "lyptest00001"
+    },
+    "00040194": {
+      "url": "https://nboptest.gf.com.cn/api/nbop/reportcenter/1.0.0/report/modelFile/zqsczytzzfxjss.pdf",
+      "positionStr": "lyptest00001"
+    },
+    "00040195": {
+      "url": "https://nboptest.gf.com.cn/api/nbop/reportcenter/1.0.0/report/modelFile/zqsczytzzfxjsskx.pdf",
+      "positionStr": "lyptest00001"
+    }
+  }
+}

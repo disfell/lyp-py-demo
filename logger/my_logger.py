@@ -1,13 +1,15 @@
 import logging
 import os
+import utils.get_logging_level as g_log_level
 
 class LoggingConfig:
     logger = None
 
     @staticmethod
-    def setup_logging(level=logging.INFO):
+    def setup_logging():
+      level = g_log_level.get(os.environ.get('LOG_LEVEL'))
       if LoggingConfig.logger is not None:
-          return LoggingConfig.logger
+        return LoggingConfig.logger
       # 定义日志根目录
       log_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'logs')
       # 确保日志目录存在

@@ -2,6 +2,7 @@
 
 # 设置环境变量
 export LYP_INK_DOMAIM="https://lyp.ink"
+export LOG_LEVEL=INFO
 
 # 获取脚本的绝对路径
 SCRIPT_PATH=$(realpath "$0")
