@@ -1,22 +1,23 @@
-import sched
-import time
 from datetime import datetime, timedelta
 import utils.get_os as get_os
 import utils.get_focus_app as g_app
 import os
 import requests
 import json
-from logger.my_logger import LoggingConfig
+import logging
+import logging_conf
+import concurrent.futures
+import time
 
-logger = LoggingConfig.setup_logging()
-
-# 轮训执行程序
-scheduler = sched.scheduler(time.time, time.sleep)
+# 设置日志
+logging_conf.setup_logging()
+logger = logging.getLogger(__name__)
 
 # 一些全局变量
 last_send_time = datetime.now()
 current_app = ''
 current_platform = get_os.get()
+lypink = os.getenv('LYP_INK_DOMAIM', 'http://localhost:3000')
 
 # 执行任务
 def job():
@@ -32,13 +33,11 @@ def job():
     logger.exception(e)
   logger.debug(f'focus_app={focus_app}')
   # ==================  获取聚焦的 APP ================== 
-  
-  lypink = os.environ.get('LYP_INK_DOMAIM')
-  if lypink is None:
-    lypink = 'http://localhost:3000'
 
+  # 计算上一次请求距当前时间，隔了多久
   time_difference = current_time - last_send_time
 
+  # 如果一直是同一个App，大于1分钟可刷新一次；如果是不同App，看立即刷新
   if (time_difference >= timedelta(seconds=60) or focus_app != current_app) and (focus_app != '' or current_app != ''):
     current_app = focus_app
     json_data = {'current_app': current_app, 'platform': current_platform}
@@ -48,10 +47,9 @@ def job():
     except Exception as e:
       logger.exception(e)
     last_send_time = datetime.now()
-  
-  scheduler.enter(10, 0, job)
 
 logger.info(f"当前系统: {current_platform}")
-# 立即执行job
-scheduler.enter(0, 0, job)
-scheduler.run()
+with concurrent.futures.ThreadPoolExecutor() as executor:
+  while True:
+    executor.submit(job)
+    time.sleep(10)

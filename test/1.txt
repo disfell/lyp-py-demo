@@ -1,6 +1,49 @@
-EXPLAIN SELECT * FROM gfuser.elesign_paramposition WHERE file_no IN ('00040099','00040098') AND sub_seal_type IN ('30','31');
+    "00010048": {
+    "00040001": {
+    "00040003": {
+    "00040012": {
+    "00040018": {
+    "00040020": {
+    "00040027": {
+    "00040037": {
+    "00040050": {
 
-输出结果是
+    "00040052": {
+    "00040053": {
+    "00040056": {
+    "00040065": {
+    "00040066": {
+    "00040071": {
+    "00040095": {
+    "00040098": {
+    "00040099": {
 
-10001	SQLNode	1			 SELECT `gfuser`.`elesign_paramposition`.`file_no`,`gfuser`.`elesign_paramposition`.`seal_type`,`gfuser`.`elesign_paramposition`.`sub_seal_type`,`gfuser`.`elesign_paramposition`.`locate_type`,`gfuser`.`elesign_paramposition`.`key_text`,`gfuser`.`elesign_paramposition`.`x_pos`,`gfuser`.`elesign_paramposition`.`y_pos`,`gfuser`.`elesign_paramposition`.`page_num`,`gfuser`.`elesign_paramposition`.`remark`,`gfuser`.`elesign_paramposition`.`key_num`,`gfuser`.`elesign_paramposition`.`organ_flag`,`gfuser`.`elesign_paramposition`.`gtid` as `gtid1` FROM `gfuser`.`elesign_paramposition`  where ((`file_no` in ('00040099','00040098')) and (`sub_seal_type` in ('30','31')))  	Cluster13,g1		Parent=NULL,Child=NULL,Next=NULL			cr, gfuser.elesign_paramposition=rep
-1	SIMPLE	elesign_paramposition	NULL	range	PRIMARY	PRIMARY	42	NULL	12	20.00	Using where, g1
+    "00040105": {
+    "00040133": {
+    "00040148": {
+    "00040155": {
+    "00040183": {
+    "00040185": {
+    "00040186": {
+    "00040194": {
+    "00040195": {
+
+    "00040196": {
+    "00040197": {
+    "00040203": {
+    "00040207": {
+    "00040222": {
+    "00040232": {
+    "00040240": {
+    "00040002": {
+    "00040004": {
+
+    "00040011": {
+    "00040013": {
+    "00040014": {
+    "00040019": {
+    "00040021": {
+    "00040023": {
+    "00040024": {
+    "00040025": {
+    "00040026": {
