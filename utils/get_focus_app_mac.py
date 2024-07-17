@@ -1,6 +1,3 @@
-import sys
-
-sys.path.append('..')
 from AppKit import NSWorkspace
 from urllib.parse import unquote
 
